@@ -16,11 +16,11 @@ void loop() {
   uint32_t val = 0;
   val = pattern << pos;
   pos = (pos + 1) % LEDs_count;
-  
+
   digitalWrite(pin_latch, LOW);
-  shiftOut(pin_data, pin_clock, MSBFIRST, (val & 0xFF) | ((val >> LEDs_count) & 0xFF));
-  shiftOut(pin_data, pin_clock, MSBFIRST, ((val >> 8) & 0xFF) | ((val >> (LEDs_count + 8)) & 0xFF));
+  shiftOut(pin_data, pin_clock, LSBFIRST, (val & 0xFF) | ((val >> LEDs_count) & 0xFF));
+  shiftOut(pin_data, pin_clock, LSBFIRST, ((val >> 8) & 0xFF) | ((val >> (LEDs_count + 8)) & 0xFF));
   digitalWrite(pin_latch, HIGH);
-  delay(120);
+  delay(110);
 }
 
